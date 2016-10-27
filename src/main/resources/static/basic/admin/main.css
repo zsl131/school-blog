@@ -1,0 +1,48 @@
+body, html {
+    background:#eff4f8; overflow:hidden;
+}
+
+.model-head {
+    height:80px; padding:0px; width:100%; float:left;
+}
+
+.model-head .logo {
+    height:80px; width:240px; text-align:center; float:left;
+}
+
+.model-head .logo i {
+    color:#3280fc; margin-top:5px; font-size:70px;
+}
+.model-head .logo b {
+    font-size:30px; font-family:'微软雅黑'; color:#464343; float:right; margin-top:15px; margin-right:10px;
+}
+
+.model-head div.right {
+    float:right; margin-right:20px; padding-top:18px;
+}
+.model-head div.right i {
+    font-size:24px; color:#475e7e;
+}
+.model-head div.right b {
+    color:#475e7e;
+}
+
+.main-left {
+    width:240px; float:left; margin:0px; padding-top:15px; position:relative;
+}
+#navigation-div {
+    overflow:auto; width:100%;
+}
+.nav-bottom {
+    width:100%; height:35px; text-align:center; line-height:35px; position:absolute; bottom:0px; color:#b2bbcc;
+}
+.main-right {
+    background:#FFF; border-radius:5px; float:left; border:1px #ddd solid; overflow-y:auto; padding:5px 15px; margin:0px;
+}
+
+
+
+
+.main-container {
+    background:#FFF; border:1px #ddd solid; border-radius:5px; margin-right:0px;
+}

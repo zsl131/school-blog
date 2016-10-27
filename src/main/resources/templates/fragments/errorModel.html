@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${session.appConfig ne null ? session.appConfig.appName:'未初始化'}+'-用户登陆'">用户登陆</title>
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/x-icon" href="/favicon.png"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <script type="text/javascript" src="/basic/js-lib/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="/basic/bootstrap3/js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/basic/bootstrap3/css/bootstrap.min.css"/>
+
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href="/basic/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/basic/font-awesome/css/font-awesome.min.css" />
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="/basic/font-awesome/css/font-awesome-ie7.min.css" />
+    <![endif]-->
+
+    <link rel="stylesheet" href="/basic/login-new/login.css"/>
+    <script type="text/javascript" src="/basic/login-new/login.js"></script>
+</head>
+<body>
+    <div class="container-fluild head-part">
+        <div class="container" title="用户登陆">
+            <i class="fa fa-key login-icon"></i>
+            <span th:text="${session.appConfig ne null ? session.appConfig.appName : '用户登陆'}" class="login-title">登陆</span>
+        </div>
+    </div>
+
+    <div class="container text-center" style="text-align:center;border:1px #3b8cff solid;"></div>
+
+    <div class="container text-center">
+        <div class="login-main">
+            <div th:include="this :: content"></div>
+        </div>
+    </div>
+
+    <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+        <div class="container text-center login-bottom">
+            &copy;<span class="show-year">2016</span><span th:text="${session.appConfig ne null ? session.appConfig.contant:'系统管理员'}"></span>
+        </div>
+    </div>
+</body>
+</html>

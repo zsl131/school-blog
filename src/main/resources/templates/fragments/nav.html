@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/adminModel">
+
+    <head>
+        <title>用户管理</title>
+    </head>
+    <body>
+        <div th:fragment="content" id="navigation-div">
+            <ul class="nav nav-list">
+                <div th:each="ppm, menuVs:${session.LOGIN_USER.authMenu}" th:remove="tag">
+                    <li th:id="'menu_'+${ppm.pm.id}" th:class="'menu-level-'+${menuVs.count}">
+                        <a href="javascript:void(0)" class="dropdown-toggle">
+                            <i th:class="${ppm.pm.icon}"></i>
+                            <span class="menu-text" th:text="${ppm.pm.name}+' '">菜单名称</span>
+                            <b class="arrow icon-angle-down"></b>
+                        </a>
+
+                        <ul class="submenu">
+                            <div th:each="pm : ${ppm.children}" th:remove="tag">
+                                <li th:id="'menu_'+${pm.id}" th:class="'menu-level-'+${menuVs.count}" th:attr="thisHref=${pm.href}, pmId=${ppm.pm.id}, mId=${pm.id}">
+                                    <a th:href="'javascript:gotoHref(\''+${pm.href}+'\', \''+${ppm.pm.id}+'\', \''+${pm.id}+'\')'" >
+                                        <i th:class="${pm.icon}"></i><span th:text="${pm.name}+' '" th:remove="tag"></span>
+                                    </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                </div>
+            </ul>
+
+            <input type="hidden" id="curPmId" th:value="${session.pmId}"/>
+            <input type="hidden" id="curMId" th:value="${session.mid}"/>
+            <script type="text/javascript">
+                $(function() {
+                    //alert("sdfsdf");
+                    var pathname = window.location.pathname;
+                    var thisHref = $('li[thisHref="'+pathname+'"]');
+                    var pmId = $(thisHref).attr("pmId");
+                    var mid = $(thisHref).attr("mId");
+                    //alert($(thisHref).html());
+                    //alert(pmId+"=="+mid);
+
+                    if(pmId==null || mid==null) {
+                        pmId = $("#curPmId").val();
+                        mid = $("#curMId").val();
+                    }
+                    if(pmId==null || mid==null) {
+                        $(".menu-level-1").addClass("active open");
+                    } else {
+                        $(("#menu_"+pmId)).addClass("active open");
+                        $(("#menu_"+mid)).addClass("active");
+                    }
+                });
+
+                function gotoHref(href, pm, m) {
+                    //alert(href);
+                    $.post("/setCurrentMenuId", {pmId:pm, mid:m}, function(res) {
+                        if(res=='1') {window.location.href = href;}
+                    }, "json");
+                }
+            </script>
+        </div>
+    </body>
+</html>

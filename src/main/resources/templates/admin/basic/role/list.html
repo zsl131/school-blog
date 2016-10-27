@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="fragments/adminModel">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<title>角色列表</title>
+		<script type="text/javascript">
+			$(function() {
+				$(".delete-obj-href").deleteFun();
+			});
+		</script>
+	</head>
+<body>
+	<div th:fragment="content" th:remove="tag">
+		<div class="header lighter smaller blue">
+			<h3><span class="glyphicon glyphicon-th-list"></span>&nbsp;角色列表<small>（<span th:text="${#lists.size(datas)}"></span>）</small></h3>
+			<div th:replace="admin/basic/role/nav :: content" th:remove="tag"></div>
+		</div>
+
+        <div th:replace="admin/basic/role/filter :: content" th:remove="tag"></div>
+
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>名称</th>
+						<th>SN</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="obj : ${datas}">
+						<td th:text="${obj.id}">${obj.id}</td>
+						<td th:text="${obj.name}">${obj.name}</td>
+						<td th:text="${obj.sn}">${obj.sn}</td>
+						<td>
+							<div class="action-buttons">
+								<a class="blue auth" sn="RoleController.menus" title="分配权限" th:href="'/admin/role/menus/'+${obj.id}"><i class="fa fa-key"></i></a>
+								<a class="green auth" sn="RoleController.update" title="修改" th:href="'/admin/role/update/'+${obj.id}">
+									<i class="fa fa-pencil"></i>
+								</a>
+
+								<a class="delete-obj-href red auth" sn="RoleController.delete" th:title="'此操作不可逆，确定删除【'+${obj.name}+'】吗？'" th:href="'/admin/role/delete/'+${obj.id}">
+									<i class="fa fa-remove"></i>
+								</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div th:include="fragments/page :: pager" th:remove="tag"></div>
+		</div>
+	</div>
+</body>
+</html>

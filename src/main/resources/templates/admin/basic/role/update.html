@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="fragments/adminModel">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<script type="text/javascript" src="/basic/validate/bootstrapValidator.js"></script>
+		<title>修改角色</title>
+	</head>
+	<body>
+		<div th:fragment="content" th:remove="tag">
+			<div class="header lighter smaller blue">
+				<h3><i class="icon-pencil"></i>&nbsp;修改角色 </h3>
+				<div th:replace="admin/basic/role/nav :: content" th:remove="tag"></div>
+			</div>
+
+			<form method="POST" th:object="${role}" id="dataForm">
+				<div class="form-group form-group-lg">
+					<label for="name">角色名称</label>
+					<input type="text" name="name" th:value="${role.name}" class="form-control" id="name" placeholder="请输入角色名称"/>
+				</div>
+				<input type="hidden" name="token" value="${session.token}"/>
+				<button type="submit" class="btn btn-primary">确定提交</button>
+			</form>
+			<script type="text/javascript">
+				jQuery(function($) {
+					$('#dataForm').bootstrapValidator({
+		//		        live: 'disabled',
+						message: '验证不通过',
+						feedbackIcons: {
+							valid: 'glyphicon glyphicon-ok',
+							invalid: 'glyphicon glyphicon-remove',
+							validating: 'glyphicon glyphicon-refresh'
+						},
+						fields: {
+							name: {
+								validators: {
+									notEmpty: {
+										message: '请输入角色名称'
+									}
+								}
+							}
+						}
+					});
+				});
+			</script>
+		</div>
+	</body>
+</html>

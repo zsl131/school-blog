@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="fragments/adminModel">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>网站配置管理</title>
+	<script type="text/javascript">
+		$(function() {
+			//$("#addForm").platformvalidate();
+		});
+	</script>
+	</head>
+	<body>
+		<div th:fragment="content" th:remove="tag">
+			<div class="header lighter smaller blue">
+				<h3><span class="glyphicon glyphicon-th-list"></span><i class="icon-setting"></i>&nbsp;网站配置管理<small>&nbsp;</small></h3>
+			</div>
+
+			<form method="POST" th:object="${appConfig}">
+				<div class="form-group form-group-lg">
+					<div class="input-group">
+					  <div class="input-group-addon">系统名称：</div>
+					  <input name="appName" type="text" class="form-control" th:value="${appConfig.appName}" placeholder="请输入网站名称" />
+					</div>
+				</div>
+				<div class="form-group form-group-lg">
+					<div class="input-group">
+					  <div class="input-group-addon">当前版本：</div>
+					  <input name="appVersion" type="text" class="form-control" th:value="${appConfig.appVersion}" placeholder="请输入当前版本" />
+					</div>
+				</div>
+				<div class="form-group form-group-lg">
+					<div class="input-group">
+					  <div class="input-group-addon">首页地址：</div>
+					  <input name="indexPage" type="text" class="form-control" th:value="${appConfig.indexPage}" placeholder="请输入前台首页地址" />
+					</div>
+				</div>
+				<div class="form-group form-group-lg">
+					<div class="input-group">
+						<div class="input-group-addon">联系人：</div>
+						<input name="contant" type="text" class="form-control" th:value="${appConfig.contant}" placeholder="网站联系人" />
+					</div>
+				</div>
+				<div class="form-group form-group-lg">
+					<div class="input-group">
+						<div class="input-group-addon">管理员邮箱：</div>
+						<input name="adminEmail" type="text" class="form-control" th:value="${appConfig.adminEmail}" placeholder="管理员邮箱地址，多个用英文逗号隔开" />
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary submit-update-btn">保存设置</button>
+			</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="fragments/adminModel">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<script type="text/javascript" src="/basic/validate/bootstrapValidator.js"></script>
+		<title>添加用户</title>
+	</head>
+	<body>
+		<div th:fragment="content" th:remove="tag">
+			<div class="header lighter smaller blue">
+				<h3><i class="icon-plus"></i>&nbsp;添加用户 </h3>
+				<div th:replace="admin/basic/user/nav :: content" th:remove="tag"></div>
+			</div>
+
+			<form method="POST" th:object="${user}" id="dataForm">
+				<div class="form-group form-group-lg">
+					<label for="nickname">用户昵称</label>
+					<input type="text" name="nickname" th:value="${user.nickname}" class="form-control" id="nickname" placeholder="请输入用户昵称"/>
+				</div>
+				<div class="form-group form-group-lg">
+					<label for="username">登陆用户名</label>
+					<input type="text" name="username" th:value="${user.username}" class="form-control" id="username" placeholder="请输入登陆用户名"/>
+				</div>
+				<div class="form-group form-group-lg">
+					<label for="password">登陆密码</label>
+					<input type="password" name="password" class="form-control" id="password" placeholder="请输入登陆密码"/>
+				</div>
+				<div class="form-group form-group-lg">
+					<label for="confirmPassword">重复密码</label>
+					<input type="password" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="请再次输入登陆密码"/>
+				</div>
+				<div class="form-group form-group-lg">
+					<div class="input-group input-group-lg">
+						<div class="input-group-addon">用户状态</div>
+						<div class="form-control">
+							<input type="radio" name="status" value="1" id="status_1" th:checked="${user.status == 1}?'checked'"/><label for="status_1">启用</label>
+							<input type="radio" name="status" value="0" id="status_0" th:checked="${user.status == 0}?'checked'"/><label for="status_0">停用</label>
+						</div>
+					</div>
+				</div>
+				<input type="hidden" name="token" th:value="${session.token}"/>
+				<button type="submit" class="btn btn-primary">确定提交</button>
+			</form>
+			<script type="text/javascript">
+				jQuery(function($) {
+					$('#dataForm').bootstrapValidator({
+		//		        live: 'disabled',
+						message: '验证不通过',
+						feedbackIcons: {
+							valid: 'glyphicon glyphicon-ok',
+							invalid: 'glyphicon glyphicon-remove',
+							validating: 'glyphicon glyphicon-refresh'
+						},
+						fields: {
+							nickname: {
+								validators: {
+									notEmpty: {
+										message: '请输入用户昵称'
+									}
+								}
+							},
+							username: {
+								validators: {
+									notEmpty: {
+										message: '请输入用户名'
+									},
+									stringLength: {
+										min: 3,
+										max: 30,
+										message: '用户名长度必须在3~10之间'
+									}
+								}
+							},
+							password: {
+								validators: {
+									notEmpty: {
+										message: '密码不能为空'
+									},
+									stringLength: {
+										min: 6,
+										max: 30,
+										message: '密码长度必须在6~30之间'
+									},
+									identical: {
+										field: 'confirmPassword',
+										message: '两次密码输入不一致'
+									},
+									different: {
+										field: 'username',
+										message: '密码不能和用户名一样'
+									}
+								}
+							},
+							confirmPassword: {
+								validators: {
+									notEmpty: {
+										message: '密码不能为空'
+									},
+									identical: {
+										field: 'password',
+										message: '两次密码输入不一致'
+									},
+									different: {
+										field: 'username',
+										message: '密码不能和用户名一样'
+									}
+								}
+							}
+						}
+					});
+				});
+			</script>
+		</div>
+	</body>
+</html>

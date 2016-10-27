@@ -1,0 +1,75 @@
+body, html {
+    background:url("images/bg-img.jpg");
+}
+
+.head-part {
+    height:80px; background:#FFF; padding:10px 0px;
+
+    -webkit-box-shadow:0 0 10px #777;
+    -moz-box-shadow:0 0 10px #777;
+    box-shadow:0 0 10px #777;
+}
+
+.login-icon {
+    font-size:55px; color:#3b8cff;
+}
+.login-title {
+    font-size:30px; color:#3b8cff; font-family:'微软雅黑';
+}
+
+
+.login-main {
+    width:70%; text-align:center; margin-left:15%; margin-top:50px;
+}
+.login-main .title {
+    text-align:left; margin-bottom:15px;
+}
+.login-main .title b {
+    text-align:left; color:#3b8cff; font-size:16px; margin-left:10px;
+}
+
+.login-main .title a {
+    float:right; color:#555; margin-right:10px;
+}
+
+.login-main .login-box {
+    border:1px #c0d0e7 solid; border-radius:5px; background:#f0f4fa; padding:15px 0px;
+}
+
+.login-main .login-box label {
+    margin-top:30px; color:#888;
+}
+
+.login-main .login-box div.col-md-6 {
+    padding:0px 20px;
+}
+
+.login-main .login-box div.col-md-6:first-child {
+    border-right:1px #ddd solid;
+}
+
+.login-main .login-box div.col-md-6:last-child {
+    border-left:1px #FFF solid;
+}
+
+.login-main .login-box div.col-md-6 p.remind {
+    font-size:15px; margin-top:25px; text-align:left; color:#40aaef; font-family:'微软雅黑';
+}
+.login-main .login-box div.col-md-6 p.remind:first-child {
+    margin-top:35px; color:#fba848;
+}
+.login-main .login-box div.col-md-6 p.remind i {
+    font-size:50px; width:60px; text-align:center;
+}
+.login-main .login-box div.col-md-6 p.remind:last-child {
+    color:#58be89;
+}
+
+
+.show-year {
+    padding:0px 10px 0px 5px;
+}
+
+.login-bottom {
+    line-height:50px; color:#999;
+}

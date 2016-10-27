@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="content" th:remove="tag">
+            <div id="sys_filter" class="form-inline" style="padding-bottom:10px;">
+                <div class="input-group">
+                    <span class="input-group-addon">名称</span>
+                    <input type='text' style="width:140px;" class='filter_element form-control' opt="like" name='filter_name'/>
+                </div>
+
+                <span><button type="button" class="btn btn-primary btn-sm" id="beginFilter">查询</button></span>
+            </div>
+        </div>
+    </body>
+</html>

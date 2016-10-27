@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/errorModel">
+
+<head>
+    <title th:text="'404错误'+${session.appConfig ne null ? session.appConfig.appName:''}">404错误</title>
+</head>
+<body>
+<div th:fragment="content">
+    <div class="title">
+        <b><i class="fa fa-user"></i> 出现错误</b>
+        <a href="/"><i class="fa fa-home"></i>前台首页</a>
+    </div>
+    <div class="row login-box">
+        <div class="col-md-12 col-sm-12 col-xs-12" style="padding-top:20px;">
+            <div class="container-fluid" style="">
+                <div class="text-center" style="font-size:200px; color:#a72d2d"><i class="fa fa-trash-o"></i>
+                    <p style="font-size:30px;">受访页面已不复存在！<a href="/" class="btn btn-lg btn-info"><i class="fa fa-home"></i> 首&nbsp;页</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

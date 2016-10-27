@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/errorModel">
+<head>
+    <title th:text="${session.appConfig ne null ? session.appConfig.appName:'未初始化'}+'-用户登陆'">用户登陆</title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+    <div th:fragment="content">
+        <div class="title">
+            <b><i class="fa fa-user"></i> 用户登陆</b>
+            <a href="/"><i class="fa fa-home"></i>前台首页</a>
+        </div>
+        <div class="row login-box">
+            <div class="col-md-6">
+                <form method="post" id="addForm">
+                    <div class="form-group form-group-lg text-left">
+                        <input name="targetUrl" type="hidden" value="${targetUrl}"/>
+                        <input name="token" type="hidden" value="${token}"/>
+                        <label for="email">用户名</label>
+                        <input type="text" name="username" id="email" class="form-control input-xlarge" placeholder="请输入用户名"/>
+                        <label for="pwd">登陆密码</label>
+                        <input type="password" name="password" id="pwd" class="form-control input-xlarge" placeholder="请输入登陆密码"/>
+                        <p class="text-left" style="margin-top:30px;">
+                            <button type="submit" class="btn btn-lg btn-danger"><i class="fa fa-unlock"></i> 提交登陆</button>
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-6 hidden-sm hidden-xs">
+                <p class="remind"><i class="fa fa-shield"></i>  严防死守，严把数据安全关</p>
+                <p class="remind"><i class="fa fa-support"></i>  高效稳定，运行稳健极速响应</p>
+                <p class="remind"><i class="fa fa-tv"></i>  轻松便捷，工作从此不再繁琐</p>
+            </div>
+        </div>
+        <div class="alert alert-danger fa fa-times" id="showErrors" style="margin-top:15px;" th:if="${errMsg ne null}" role="alert" th:text="${errMsg}"></div>
+    </div>
+</body>
+</html>

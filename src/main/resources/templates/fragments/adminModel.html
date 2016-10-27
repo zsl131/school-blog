@@ -1,0 +1,74 @@
+<!DOCTYPE html >
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      th:fragment="mymodel">
+
+<head th:fragment="head">
+    <title>后台首页</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="icon" type="image/x-icon" href="/favicon.png"/>
+    <!-- 默认360 兼容模式 -->
+    <meta name="renderer" content="webkit|ie-comp|ie-stand"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <script type="text/javascript" src="/basic/js-lib/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="/basic/bootstrap3/js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/basic/bootstrap3/css/bootstrap.min.css"/>
+
+    <script type="text/javascript" src="/basic/admin/myself/public.js"></script>
+
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href="/basic/font-awesome-4.7.0/css/font-awesome.min.css" />
+
+    <script type="text/javascript" src="/basic/admin/myself/delete.js"></script>
+    <script type="text/javascript" src="/basic/admin/myself/auth.js"></script>
+    <script type="text/javascript" src="/basic/admin/myself/cms.admin.js"></script>
+    <script type="text/javascript" src="/basic/admin/myself/my_filter.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="/basic/admin/main.css"/>
+    <link type="text/css" rel="stylesheet" href="/basic/admin/form-page.css"/>
+    <link type="text/css" rel="stylesheet" href="/basic/admin/list-page.css"/>
+    <link type="text/css" rel="stylesheet" href="/basic/admin/nav.css"/>
+    <script type="text/javascript" src="/basic/admin/main.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $(".logout-href").deleteFun({title:'退出提示',msg:'确定退出系统吗？'});
+        });
+    </script>
+</head>
+<body>
+<div class="container-fluid model-head">
+    <div class="logo">
+        <i class="fa fa-cloud-upload"></i>
+        <b>后台管理</b>
+    </div>
+    <div class="right">
+        <i class="fa fa-user-circle-o"></i>
+        <b th:text="${session.LOGIN_USER.user.nickname}"></b>
+        <a href="/logout" title="退出系统" class="logout-href btn btn-danger">退出</a>
+    </div>
+</div>
+
+<div class="container-fluid" style="padding:0px;">
+    <div class="main-left">
+        <div th:replace="fragments/nav :: content"></div>
+        <div class="nav-bottom"><span class="show-copy"></span><span th:text="${session.appConfig.contant}"></span></div>
+    </div>
+    <div class="main-right">
+        <div th:include="this :: content" style="margin:10px;"></div>
+    </div>
+</div>
+
+<div id="userAuthHref" style="display: none;">
+    <div th:each="authTmp : ${session.LOGIN_USER.authList}" th:remove="tag">
+        <span th:text="'('+${authTmp}+')'" th:remove="tag"></span>
+    </div>
+</div>
+<div th:each="arg : ${args}" class="search-filter-div">
+    <input th:value="${arg.value}" type="hidden" th:attr="targetId=${arg.key}"/>
+</div>
+</body>
+</html>

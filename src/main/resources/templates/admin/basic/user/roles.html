@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="fragments/adminModel">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<script type="text/javascript" src="/basic/js-lib/bootstrap-treeview.min.js"></script>
+
+<title>为用户授权</title>
+</head>
+<body>
+	<div th:fragment="content" th:remove="tag">
+		<div class="header lighter smaller blue">
+			<h3><i class="icon-key"></i>&nbsp;为用户授权 <small th:text="${user.nickname}+'['+${user.username}+']'"></small></h3>
+			<div th:replace="admin/basic/user/nav :: content" th:remove="tag"></div>
+		</div>
+		<div class="widget-box">
+			<div class="widget-header header-color-blue2">
+				<h4 class="lighter smaller">在角色名前面打钩则表示授权（共有【<b th:text="${#lists.size(roleList)}"></b>】个角色）</h4>
+			</div>
+
+			<div class="list-group" th:each="obj : ${roleList}">
+					<a href="javascript:" class="list-group-item">
+						<label>
+							<input class="ace ace-checkbox-2 single-role-box" th:id="'role_'+${obj.id}" type="checkbox" />
+							<span class="lbl" th:text="${obj.name}">&nbsp;${obj.name}</span>
+						</label>
+					</a>
+			</div>
+			<input type="hidden" id="curRoles" th:value="${roleIds}"/>
+			<input type="hidden" id="curUserId" th:value="${user.id}"/>
+		</div>
+		<script type="text/javascript" src="/admin/myself/user_roles.js"></script>
+	</div>
+</body>
+</html>

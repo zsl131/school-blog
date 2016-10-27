@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/adminModel">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <title>用户列表</title>
+    <script type="text/javascript">
+        $(function() {
+            $(".delete-obj-href").deleteFun();
+        });
+    </script>
+</head>
+<body>
+
+    <div th:fragment="content" th:remove="tag">
+        <div class="header lighter smaller blue">
+            <h3><span class="glyphicon glyphicon-th-list"></span>&nbsp;用户列表<small>（<b th:text="${datas.getTotalElements()}"></b>）</small></h3>
+            <div th:replace="admin/basic/user/nav :: content" th:remove="tag"></div>
+        </div>
+
+        <!-- <div class="table-header">
+            Results for "Latest Registered Domains"
+        </div> -->
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名称</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="obj : ${datas}">
+                        <td th:text="${obj.id}">${obj.id}</td>
+                        <td th:text="${obj.nickname}+'('+${obj.username}+')'">${obj.name}</td>
+                        <td>
+                            <div th:switch="${obj.status}" th:remove="tag">
+                                <p th:case="1"><span class="green glyphicon glyphicon-ok-sign">正常</span></p>
+                                <p th:case="*"><span class="red glyphicon glyphicon-remove-sign">停用</span></p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <a class="blue auth" sn="UserController.roles" title="分配权限" th:href="'/admin/user/roles/'+${obj.id}"><i class="icon-key bigger-130"></i></a>
+                                <a class="green auth" title="修改" sn="UserController.update" th:href="'/admin/user/update/'+${obj.id}">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <span th:if="${obj.username ne 'admin' and obj.username ne 'sadmin'}">
+                                    <a class="delete-obj-href red auth"  sn="UserController.delete" th:title="'此操作不可逆，确定删除【'+${obj.nickname}+'】吗？'" th:href="'/admin/user/delete/'+${obj.id}">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:include="fragments/page :: pager" th:remove="tag"></div>
+        </div>
+    </div>
+</body>
+</html>

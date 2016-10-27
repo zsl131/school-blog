@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script type="text/javascript" src="/js-lib/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="/bootstrap3/js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/bootstrap3/css/bootstrap.min.css"/>
+
+    <script type="text/javascript">
+	//启动主
+	function Start1_onclick() {
+		captrue.bStartPlay();
+	}
+</script>
+</head>
+<body>
+
+<div class="container">
+    <div class="alert alert-info">
+        <h1>测试js是否起作用</h1>
+    </div>
+    <div class="alert alert-warning">
+        <div style="text-align: center;">
+            <object classid="clsid:454C18E2-8B7D-43C6-8C17-B1825B49D7DE"
+                    id="captrue" width="400" height="300"></object>
+        </div>
+        <div align="center" style="margin-top: 5px;">
+            <input type="button" value="启动主" onclick="Start1_onclick()"/>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

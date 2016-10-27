@@ -1,0 +1,11 @@
+div.table-responsive table.table {
+    border:1px #FFF solid;
+}
+
+div.table-responsive table.table tr th {
+    border:none; border-bottom:1px #f7f9fe solid; color:#424e67;
+}
+
+div.table-responsive table.table tbody tr td {
+    border:none; border-bottom:1px #f7f9fe solid; background:none; color:#424e67;
+}

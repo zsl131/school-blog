@@ -1,0 +1,67 @@
+.m-t-1 {
+    margin-top: 10px;
+}
+
+.input-icon {
+    display: inline-block;
+    position: relative;
+}
+
+.input-icon .btn{
+    height: 28px!important;
+    margin-top: -3px;
+    font-size: 13px;
+    line-height: 1.3;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.input-icon .search-input {
+    border: 1px solid #6FB3E0;
+    height: 28px!important;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 4px!important;
+    font-size: 13px;
+    line-height: 1.3;
+    color: #666!important;
+    z-index: 11;
+    transition: width ease .15s;
+}
+
+.input-icon .ace-icon {
+    z-index: 2;
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    left: 3px;
+    display: inline-block;
+    line-height: 24px;
+    color: #6FB3E0!important;
+}
+
+
+.ace-settings-container .pagination {
+    margin:0px; margin-top:8px; margin-right:12px;
+}
+
+.remind-red {
+    color:#F00; padding:0px 8px;
+}
+
+.remind-gray {
+    color:#888; margin:5px 0px;
+}
+
+.upload-info-div {
+    border:1px #ddd solid; height:280px; margin:5px; vertical-align: middle; line-height:280px;
+    border-radius: 5px;
+}
+
+
+a.upload-img-href {
+    border:none; border-radius:5px;
+}
+a.upload-img-href img {
+    width:100%; height:100%; border-radius:5px;
+}

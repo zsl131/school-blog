@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/adminModel">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script type="text/javascript" src="/basic/js-lib/bootstrap-treeview.min.js"></script>
+    <script type="text/javascript" src="/basic/js-lib/ui/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="/basic/js-lib/ui/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="/basic/js-lib/ui/jquery.ui.mouse.js"></script>
+    <script type="text/javascript" src="/basic/js-lib/ui/jquery.ui.sortable.js"></script>
+
+    <script type="text/javascript" src="/basic/admin/myself/my.sortable.js"></script>
+
+    <title>菜单列表</title>
+    <script type="text/javascript">
+        $(function() {
+            $(".rebuildMenu").deleteFun({title:'重构提示', msg:'确定要重新生成所有菜单吗？请谨慎操作'});
+
+            var defaultData = $("#treeJson").val();
+            //alert(defaultData);
+            defaultData = eval('(' + defaultData + ')'); //JSON.parse(defaultData);
+
+            //alert(defaultData);
+            var myMenuTree = $('#tree1').treeview({
+                data: defaultData,
+                showIcon: true,
+                showCheckbox: false,
+                showTags: true,
+                state:'',
+                multiSelect: false,
+                levels:1,
+                //levels: 99, //展开99级，基本也就是全部展开了
+                onNodeSelected: function(event, node) {
+                    operate(node.text, "1");
+                }
+            });
+
+            myMenuTree.treeview("checkNode", myMenuTree.treeview("search", "="+$("#curPid").val()+">"));
+
+            //添加或删除数据
+            function operate(name, flag) {
+                var objId = $(name).attr("title"); //获取菜单Id
+                //alert(objId);
+                if(objId!=$("#curPid").val()) {
+                    window.location.href = $("#thisUrl").val()+objId;
+                }
+            }
+
+            $("table").sorttable({
+                url:"/admin/menu/updateSort",
+                authSn:"MenuController.updateSort"
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <div th:fragment="content" th:remove="tag">
+
+        <input type="hidden" id="thisUrl" value="/admin/menu/list?pid="/>
+        <input type="hidden" id="treeJson" th:value="${treeJson}"/>
+        <input type="hidden" id="curPid" th:value="${#httpServletRequest.getParameter('pid')}"/>
+        <div class="header lighter smaller blue">
+            <h3><span class="glyphicon glyphicon-th-list"></span>&nbsp;菜单列表<small>（<span th:text="${datas.totalElements}" th:remove="tag"></span>）</small></h3>
+            <div th:replace="admin/basic/menu/nav :: content" th:remove="tag"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div id="tree1" class="tree"></div>
+            </div>
+            <div class="col-md-9">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>名称</th>
+                            <th>SN</th>
+                            <th>类型</th>
+                            <th>链接地址</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr th:each="obj : ${datas}">
+                                <td th:text="${obj.id}">对象Id</td>
+                                <td><span th:text="' '+${obj.name}" th:class="${obj.icon}">对象名称</span></td>
+                                <td th:text="${obj.sn}">SN</td>
+                                <td>
+                                    <div th:switch="${obj.type}" th:remove="tag">
+                                        <p th:case="1" th:remove="tag">导航菜单</p>
+                                        <p th:case="*" th:remove="tag">权限菜单</p>
+                                    </div>
+                                </td>
+                                <td th:text="${obj.href}">链接地址</td>
+                                <td>
+                                    <a class="green auth" sn="MenuController.update" title="修改" th:href="'/admin/menu/update/'+${obj.id}">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot></tfoot>
+                    </table>
+                    <div th:include="fragments/page :: pager" th:remove="tag"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

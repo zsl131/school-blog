@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/adminModel">
+
+    <head>
+        <title>后台首页</title>
+    </head>
+    <body>
+        <div th:fragment="content">
+            <div class="page-header">
+                <h2>后台首页</h2>
+            </div><!-- /.page-header -->
+
+            <div class="alert alert-block alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <i class="fa fa-remove"></i>
+                </button>
+                <i class="icon-ok green"></i>
+                欢迎登陆
+                <strong class="green">
+                    <b th:text="${session.appConfig.appName}">系统名称</b>
+                    <small th:text="${session.appConfig.appVersion}">版本</small>
+                </strong>
+                ，登陆IP：<span th:text="${session.LOGIN_USER.login_ip}">登陆IP</span>，登陆时间：
+                <span th:text="${#dates.format(session.LOGIN_USER.login_time, 'yyyy-MM-dd HH:mm:ss')}"></span>
+            </div>
+
+            <div class="col-md-12">
+            </div>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/adminModel">
+
+    <head>
+        <title>修改个人信息</title>
+        <script type="text/javascript" src="/validate/bootstrapValidator.js"></script>
+    </head>
+    <body>
+        <div th:fragment="content">
+            <div class="header lighter smaller blue">
+                <h3><i class="icon-edit"></i>&nbsp;修改个人信息 &nbsp;&nbsp;<span th:if="${flag eq 2}" class="red icon-exclamation-sign">修改信息失败</span><span th:if="${flag eq 1}" class="green icon-ok">修改信息成功</span>
+                    <span th:if="${errorMsg ne null and errorMsg ne ''}" class="red icon-exclamation-sign">${errorMsg}</span>
+                </h3>
+            </div>
+
+            <form method="POST" id="dataForm">
+                <div class="form-group form-group-lg">
+                    <label for="nickname">用户昵称</label>
+                    <input name="nickname" class="form-control" id="nickname" placeholder="请输入用户昵称" th:value="${session.LOGIN_USER.user.nickname}"/>
+                </div>
+                <div class="form-group form-group-lg">
+                    <label for="username">登陆用户名</label>
+                    <input name="username" class="form-control" readonly="true" id="username" placeholder="请输入登陆用户名" th:value="${session.LOGIN_USER.user.username}"/>
+                </div>
+                <div class="form-group form-group-lg">
+                    <label for="password">原始密码<small>（不修改密码可以不输入）</small></label>
+                    <input type="password" name="oldPwd" class="form-control" id="password" placeholder="请输入原始密码"/>
+                </div>
+                <div class="form-group form-group-lg">
+                    <label for="repwd">登陆密码<small>（不修改密码可以不输入）</small></label>
+                    <input type="password" name="password" class="form-control" id="repwd" placeholder="请输入登陆密码"/>
+                </div>
+                <div class="form-group form-group-lg">
+                    <label for="confirmPassword">重复密码<small>（不修改密码可以不输入）</small></label>
+                    <input type="password" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="请再次输入登陆密码"/>
+                </div>
+                <input type="hidden" name="token" th:value="${token}"/>
+                <button type="submit" class="btn btn-primary">确定提交</button>
+            </form>
+            <script type="text/javascript">
+            jQuery(function($) {
+                $('#dataForm').bootstrapValidator({
+    //		        live: 'disabled',
+                    message: '验证不通过',
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        nickname: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入用户昵称'
+                                }
+                            }
+                        },
+                        username: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入用户名'
+                                },
+                                stringLength: {
+                                    min: 3,
+                                    max: 30,
+                                    message: '用户名长度必须在3~10之间'
+                                }
+                            }
+                        },
+                        oldPwd: {
+                            validators: {
+                                stringLength: {
+                                    min: 6,
+                                    max: 30,
+                                    message: '密码长度必须在6~30之间'
+                                }
+                            }
+                        },
+                        password: {
+                            validators: {
+                                stringLength: {
+                                    min: 6,
+                                    max: 30,
+                                    message: '密码长度必须在6~30之间'
+                                },
+                                identical: {
+                                    field: 'confirmPassword',
+                                    message: '两次密码输入不一致'
+                                },
+                                different: {
+                                    field: 'username',
+                                    message: '密码不能和用户名一样'
+                                }
+                            }
+                        },
+                        confirmPassword: {
+                            validators: {
+                                identical: {
+                                    field: 'password',
+                                    message: '两次密码输入不一致'
+                                },
+                                different: {
+                                    field: 'username',
+                                    message: '密码不能和用户名一样'
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+        </div>
+    </body>
+</html>

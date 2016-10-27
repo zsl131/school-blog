@@ -1,0 +1,31 @@
+ul.nav-list {
+    width:100%; float:left;
+}
+ul.nav-list li {
+    list-style:none; width:100%;float:left;
+}
+
+ul.nav-list li a.dropdown-toggle {
+}
+
+ul.nav-list li a.dropdown-toggle:hover {
+    background:#e4e9ec;
+}
+
+ul.nav-list .submenu {
+    width:100%; float:left; padding:0px;
+}
+
+ul.nav-list .submenu a {
+    padding-left:35px; height:40px; line-height:40px;
+}
+
+.submenu li.active {
+    background:#e4e9ec;
+}
+.submenu li.active a:hover {
+    background:#e4e9ec;
+}
+.submenu li.active a {
+    color:#5e9afb;
+}

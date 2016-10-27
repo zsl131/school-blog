@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/adminModel">
+    <head>
+        <title>系统异常</title>
+
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+        <script type="text/javascript" src="/basic/js-lib/jquery-1.12.3.min.js"></script>
+        <script type="text/javascript" src="/basic/bootstrap3/js/bootstrap.min.js"></script>
+        <link type="text/css" rel="stylesheet" href="/basic/bootstrap3/css/bootstrap.min.css"/>
+
+
+        <script type="text/javascript" src="/basic/validate/bootstrapValidator.js"></script>
+        <style>
+            body, html {
+                background:#f9f9f9;
+            }
+        </style>
+    </head>
+<body>
+    <div th:fragment="content" th:remove="tag">
+        <!--<div class="header my-top-header" style="border-top: 3px solid #ddeb00;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 style="color:#FFF" ><span class="glyphicon glyphicon-log-in"></span><strong>&nbsp;发生系统异常！</strong></h1>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <div class="container" style="background: #FFF">
+            <h1 class="text-center" style="font-size:180px; color:#b60000;">
+                <span class="glyphicon glyphicon-remove"></span>
+                <br/>
+                <span style="font-size:28px; font-weight: bold;" th:text="${errorInfo.datas}">异常信息</span>
+
+            </h1>
+            <div class="alert alert-danger">
+                <p th:text="'错误信息：'+${errorInfo.message}"></p>
+                <p th:text="'访问地址：'+${errorInfo.url}"></p>
+                <p th:text="'参数信息：'+${errorInfo.params}"></p>
+            </div>
+
+            <div class="text-center" style="padding-bottom:90px; padding-top:50px;">
+                <a href="/admin" class="btn btn-lg btn-danger">进入管理后台</a>
+                <a href="/" class="btn btn-lg btn-info">进入前台页面</a>
+                <a href="javascript:history.back(-1)" class="btn btn-lg btn-primary">返回上一级</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

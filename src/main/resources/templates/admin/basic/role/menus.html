@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="fragments/adminModel">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<script type="text/javascript" src="/basic/js-lib/bootstrap-treeview.min.js"></script>
+	<title>为角色授权</title>
+	</head>
+	<body>
+		<div th:fragment="content" th:remove="tag">
+			<div class="header lighter smaller blue">
+				<h3><i class="icon-key"></i>&nbsp;为角色授权 <small th:text="${role.name}"></small></h3>
+				<div th:replace="admin/basic/role/nav :: content" th:remove="tag"></div>
+			</div>
+			<div class="widget-box">
+				<div class="widget-header header-color-blue2">
+					<h4 class="lighter smaller">在菜单名前面打钩则表示授权，需要操作最底层菜单才能生效</h4>
+				</div>
+
+				<div class="widget-body">
+					<div class="widget-main padding-8">
+						<div id="tree1" class="tree"></div>
+					</div>
+				</div>
+				<input type="hidden" id="treeJson" th:value="${treeJson}"/>
+				<input type="hidden" id="objId" th:value="${role.id}"/>
+				<input type="hidden" id="curAuth" th:value="${curAuth}"/>
+			</div>
+			<script type="text/javascript" src="/admin/myself/role_menus.js"></script>
+		</div>
+	</body>
+</html>
