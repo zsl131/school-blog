@@ -37,6 +37,8 @@ public class AuthTools {
 	public void buildSystemMenu() {
 		String pn = "com/zslin/*/controller/**Controller.class";
 		buildSystemMenu(pn);
+
+		buildSystemMenu("com/zslin/*/controller/*/*Controller.class");
 	}
 
 	/**

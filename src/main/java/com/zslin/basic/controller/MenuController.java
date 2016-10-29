@@ -64,6 +64,8 @@ public class MenuController {
     @RequestMapping(value="rebuildMenus", method=RequestMethod.POST)
     public @ResponseBody String rebuildMenus(Model model, HttpServletRequest request) {
         authTools.buildSystemMenu();
+        //com.zslin.web.admin
+        authTools.buildSystemMenu("com/zslin/*/controller/*/*Controller.class");
         return "1";
     }
 

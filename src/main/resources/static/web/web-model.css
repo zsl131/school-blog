@@ -1,0 +1,23 @@
+div.web-nav-div {
+    float:right; position:absolute; right:0px; bottom:-14px;
+}
+
+div.web-nav-div ul {
+    float:right; padding:0px;
+}
+
+div.web-nav-div ul li {
+    list-style:none; float:left; margin:0px; height:35px; margin-bottom:-10px; margin-right:5px;
+
+    -webkit-box-shadow:1px 1px 3px #777;
+    -moz-box-shadow:1px 1px 3px #777;
+    box-shadow:1px 1px 3px #777;
+}
+
+div.web-nav-div ul li a {
+    float:left; width:100%; height:35px; line-height:35px; text-align:center; padding:0px 10px;
+}
+
+div.web-nav-div ul li a:link, div.web-nav-div ul li a:visited {
+    background:#c6ddff; color:#0352c2; font-family:'微软雅黑';
+}

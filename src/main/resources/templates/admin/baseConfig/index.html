@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="fragments/adminModel">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>基础配置管理</title>
+	<script type="text/javascript">
+		$(function() {
+			//$("#addForm").platformvalidate();
+		});
+	</script>
+	</head>
+	<body>
+		<div th:fragment="content" th:remove="tag">
+			<div class="header lighter smaller blue">
+				<h3><span class="fa fa-cog"></span><i class="icon-setting"></i>&nbsp;基础配置管理<small>&nbsp;</small></h3>
+			</div>
+
+			<form method="POST" th:object="${baseConfig}" enctype="multipart/form-data">
+				<div class="form-group form-group-lg">
+					<div class="input-group">
+					  <div class="input-group-addon">学校名称：</div>
+					  <input name="name" type="text" class="form-control" th:value="${baseConfig.name}" placeholder="请输入学校名称" />
+					</div>
+				</div>
+
+				<div class="form-group form-group-lg">
+					<div class="input-group">
+						<div class="input-group-addon">学校LOGO：</div>
+						<div >
+							<a th:href="${baseConfig.logoPic}" target="_blank" th:if="${baseConfig.logoPic ne null}"><img th:src="${baseConfig.logoPic}" height="80"/></a>
+							<input name="file" type="file" class="form-control"/>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group form-group-lg">
+					<div class="input-group">
+						<div class="input-group-addon">背景大图：</div>
+						<div>
+							<a th:href="${baseConfig.headimg}" target="_blank" th:if="${baseConfig.headimg ne null}"><img th:src="${baseConfig.headimg}" height="80"/></a>
+							<input name="file" type="file" class="form-control"/>
+						</div>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary submit-update-btn">保存设置</button>
+			</form>
+		</div>
+	</body>
+</html>
