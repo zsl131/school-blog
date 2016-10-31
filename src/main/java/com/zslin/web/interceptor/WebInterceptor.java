@@ -13,6 +13,7 @@ public class WebInterceptor extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new BaseConfigInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(new WebAdminInterceptor()).addPathPatterns("/webm/**");
         super.addInterceptors(registry);
     }
 }

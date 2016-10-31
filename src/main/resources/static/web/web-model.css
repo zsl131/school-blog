@@ -1,3 +1,14 @@
+div.web-nav-user-div {
+    float:right; position:absolute; right:0px; top:0px;
+}
+
+div.web-nav-user-div ul {
+    float:right; padding:0px;
+}
+div.web-nav-user-div ul li {
+    list-style:none; float:left; margin:0px; margin-right:5px;
+}
+
 div.web-nav-div {
     float:right; position:absolute; right:0px; bottom:-14px;
 }
@@ -20,4 +31,12 @@ div.web-nav-div ul li a {
 
 div.web-nav-div ul li a:link, div.web-nav-div ul li a:visited {
     background:#c6ddff; color:#0352c2; font-family:'微软雅黑';
+}
+
+#ace-settings-container {
+    float:right; position:relative; margin-top:-30px;
+}
+
+#ace-settings-container ul {
+    padding:0px; margin:0px;
 }

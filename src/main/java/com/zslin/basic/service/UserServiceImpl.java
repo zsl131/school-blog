@@ -51,7 +51,8 @@ public class UserServiceImpl {
      */
     public void initBaseUser(User user) {
         try {
-            authTools.buildSystemMenu("com/zslin/basic/controller/*Controller.class");
+            authTools.buildSystemMenu("com/zslin/*/controller/*Controller.class");
+            authTools.buildSystemMenu("com/zslin/*/controller/*/*Controller.class");
             Role role = new Role();
             role.setName("超级管理员角色"); role.setSn("ROLE_SUPER_ADMIN");
             roleService.save(role);

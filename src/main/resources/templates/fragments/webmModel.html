@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${session.appConfig ne null ? session.appConfig.appName:'未初始化'}+'-用户登陆'">用户登陆</title>
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/x-icon" href="/favicon.png"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <script type="text/javascript" src="/basic/js-lib/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="/basic/bootstrap3/js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/basic/bootstrap3/css/bootstrap.min.css"/>
+
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href="/basic/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/basic/font-awesome/css/font-awesome.min.css" />
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="/basic/font-awesome/css/font-awesome-ie7.min.css" />
+    <![endif]-->
+
+    <link rel="stylesheet" href="/basic/login-new/login.css"/>
+    <script type="text/javascript" src="/basic/login-new/login.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/web/web-model.css"/>
+    <link rel="stylesheet" type="text/css" href="/webm/main.css"/>
+    <script type="text/javascript" src="/basic/admin/myself/public.js"></script>
+
+    <script type="text/javascript" src="/basic/admin/myself/delete.js"></script>
+
+</head>
+<body>
+    <div class="container-fluild head-part">
+        <div class="container" style="position:relative;">
+            <i class="fa fa-graduation-cap login-icon"></i>
+            <span class="login-title">校园博客 <b style="font-size:16px;" th:text="${session.baseConfig ne NULL ? session.baseConfig.name:''}"></b></span>
+            <div class="web-nav-user-div">
+                <ul th:if="${session.login_account eq null}">
+                    <li><a href="/web/login"><i class="fa fa-user"></i> 登陆</a></li>
+                    <li><a href="/register"><i class="fa fa-registered"></i> 注册</a></li>
+                </ul>
+                <ul th:unless="${session.login_account eq null}">
+                    <li><a href="/webm/account/index"><i class="fa fa-user"></i> <span th:text="${session.login_account.nickname}" th:remove="tag"></span></a></li>
+                    <li><a href="/webm/category/list"><i class="fa fa-list-ul"></i> 我的分类</a></li>
+                    <li><a href="/webm/article/list"><i class="fa fa-newspaper-o"></i> 我的博文</a></li>
+                    <li><a href="/web/logout"><i class="fa fa-times-circle"></i> 退出登陆</a></li>
+                </ul>
+            </div>
+            <div class="web-nav-div">
+                <ul>
+                    <li><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+                    <li><a href="/"><i class="fa fa-heart"></i> 推荐博文</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center" style="text-align:center;border:1px #3b8cff solid;"></div>
+
+    <div class="container text-center main-container" style="padding-bottom:20px; margin-bottom:70px;">
+        <div th:include="this :: content"></div>
+    </div>
+
+    <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+        <div class="container text-center login-bottom">
+            &copy;<span class="show-year">2016</span><span th:text="${session.appConfig ne null ? session.appConfig.contant:'系统管理员'}"></span>
+        </div>
+    </div>
+</body>
+</html>

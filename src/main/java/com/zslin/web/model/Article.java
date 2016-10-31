@@ -18,7 +18,7 @@ public class Article {
     private String accountEmail;
 
     @Column(name = "account_id")
-    private String accountId;
+    private Integer accountId;
 
     @Column(name = "account_name")
     private String accountName;
@@ -88,11 +88,11 @@ public class Article {
         this.accountEmail = accountEmail;
     }
 
-    public String getAccountId() {
+    public Integer getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(String accountId) {
+    public void setAccountId(Integer accountId) {
         this.accountId = accountId;
     }
 

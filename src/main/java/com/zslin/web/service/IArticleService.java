@@ -21,4 +21,6 @@ public interface IArticleService extends JpaRepository<Article, Integer>, JpaSpe
     @Modifying
     @Transactional
     void updateCommentCount(Integer id, Integer amount);
+
+    Article findByIdAndAccountId(Integer id, Integer accountId);
 }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/webModel">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title th:text="${session.baseConfig ne null ? session.baseConfig.name +' - 校园博客': ''}">校园博客</title>
+    <link type="text/css" rel="stylesheet" href="/web/register.css"/>
+    <script type="text/javascript" src="/web/register.js"></script>
+</head>
+<body>
+<div th:fragment="content" th:remove="tag">
+    <div th:fragment="content">
+        <div class="title">
+            <b><i class="fa fa-user"></i> 用户注册</b>
+            <a href="/"><i class="fa fa-home"></i>前台首页</a>
+        </div>
+        <div class="row login-box">
+            <div class="col-md-6">
+                <form method="post" id="addForm">
+                    <div class="form-group form-group-lg text-left">
+                        <input name="token" type="hidden" value="${token}"/>
+                        <div class="form-group form-group-lg" style="margin-top:20px;">
+                            <div class="input-group">
+                                <div class="input-group-addon">姓名：</div>
+                                <input name="name" type="text" class="form-control" placeholder="请输入姓名" />
+                            </div>
+                        </div>
+                        <div class="form-group form-group-lg">
+                            <div class="input-group">
+                                <div class="input-group-addon">邮箱：</div>
+                                <input id="email-id" type="text" class="form-control" placeholder="请输入邮箱" />
+                            </div>
+                        </div>
+                        <div class="form-group form-group-lg">
+                            <div class="input-group">
+                                <div class="input-group-addon">验证码：</div>
+                                <input name="code" type="text" class="form-control" placeholder="请输入验证码" />
+                                <div class="input-group-addon get-code-btn">获取验证码</div>
+                            </div>
+                        </div>
+                        <p class="text-left" style="margin-top:30px;">
+                            <input name="email" type="hidden"/>
+                            <button type="button" class="btn btn-lg btn-danger submit-btn"><i class="fa fa-registered"></i> 提交注册</button>
+                            <a href="/findPwd" style="float:right;margin-top:12px;" title="若忘记密码，请点这里找回">找回密码？</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-6 hidden-sm hidden-xs">
+                <p class="remind"><i class="fa fa-shield"></i>  严防死守，严把数据安全关</p>
+                <p class="remind"><i class="fa fa-support"></i>  高效稳定，运行稳健极速响应</p>
+                <p class="remind"><i class="fa fa-tv"></i>  轻松便捷，工作从此不再繁琐</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="fragments/webmModel">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<script type="text/javascript" src="/basic/validate/bootstrapValidator.js"></script>
+
+		<!--引入wangEditor.css-->
+		<link rel="stylesheet" type="text/css" href="/wangEditor-2.1.22/dist/css/wangEditor.min.css"/>
+
+		<script type="text/javascript" src="/wangEditor-2.1.22/dist/js/wangEditor.min.js"></script>
+
+		<script type="text/javascript" src="/webm/category.js"></script>
+
+		<title>修改博文</title>
+	</head>
+	<body>
+		<div th:fragment="content" th:remove="tag">
+			<div class="page-header">
+				<h3><i class="fa fa-pencil"></i> 修改博文</h3>
+				<div th:replace="webm/article/nav :: content" th:remove="tag"></div>
+			</div>
+
+			<form method="POST" th:object="${article}" id="dataForm">
+				<div class="form-group form-group-lg">
+					<div class="input-group">
+						<div class="input-group-addon">标题：</div>
+						<input name="title" type="text" class="form-control" th:value="${article.title}" placeholder="请输入博文标题" />
+					</div>
+				</div>
+				<div class="form-group form-group-lg">
+					<div class="input-group">
+						<div class="input-group-addon">分类：</div>
+						<div class="form-control" style="min-height:60px; height:auto;">
+							<span th:each="cate : ${cateList}" th:remove="tag">
+								<a href="javascript:void(0)" th:text="${cate.name}" th:attr="cateId=${cate.id}, cateName=${cate.name}" class="single-cate btn btn-default"></a>
+							</span>
+							<a href="javascript:void(0)" class="btn btn-danger add-category-btn"><i class="fa fa-plus"></i> 添加分类</a>
+						</div>
+					</div>
+				</div>
+				<div class="form-group form-group-lg">
+					<div class="input-group">
+						<div class="input-group-addon">内容：</div>
+						<textarea id="content" name="content" th:text="${article.content}" style="width:100%; min-height:350px;"></textarea>
+					</div>
+				</div>
+				<input type="hidden" name="token" th:value="${session.token}"/>
+				<input type="hidden" name="cateId" th:value="${article.cateId}"/>
+				<input type="hidden" name="cateName" th:value="${article.cateName}"/>
+				<button type="button" class="btn btn-primary submit-btn"><i class="fa fa-check"></i> 确定提交</button>
+				<button type="button" class="btn btn-default" onclick="history.back(-1)"><i class="fa fa-chevron-left"></i> 返回上级</button>
+			</form>
+			<script type="text/javascript" src="/webm/article.js"></script>
+		</div>
+
+	</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/webmModel">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title th:text="${session.baseConfig ne null ? session.baseConfig.name +' - 校园博客': ''}">校园博客</title>
+</head>
+<body>
+<div th:fragment="content" th:remove="tag">
+    <div class="page-header">
+        <h3><i class="fa fa-user"></i> 用户中心<small th:if="${#httpServletRequest.getParameter('ok') eq 'true'}" style="color:blue">修改成功！</small></h3>
+    </div>
+    <form method="POST" th:object="${account}">
+        <div class="form-group form-group-lg">
+            <div class="input-group">
+                <div class="input-group-addon">邮箱地址：</div>
+                <input name="email" type="text" class="form-control" th:value="${account.email}" readonly="readonly" placeholder="请输入邮箱地址" />
+            </div>
+        </div>
+
+        <div class="form-group form-group-lg">
+            <div class="input-group">
+                <div class="input-group-addon">我的姓名：</div>
+                <input name="nickname" type="text" class="form-control" th:value="${account.nickname}" placeholder="请输入姓名" />
+            </div>
+        </div>
+
+        <div class="form-group form-group-lg">
+            <div class="input-group">
+                <div class="input-group-addon">座右铭：</div>
+                <input name="motto" type="text" class="form-control" th:value="${account.motto}" placeholder="请输入座右铭" />
+            </div>
+        </div>
+
+        <div class="form-group form-group-lg">
+            <div class="input-group">
+                <div class="input-group-addon">自我介绍：</div>
+                <textarea name="remark" type="text" style="height:100px;resize:none;" class="form-control" th:text="${account.remark}" placeholder="自我介绍可以让别人更了解你！" ></textarea>
+            </div>
+        </div>
+
+        <div class="form-group form-group-lg">
+            <div class="input-group">
+                <div class="input-group-addon">原始密码：</div>
+                <input name="oldPwd" type="password" class="form-control" placeholder="原始密码，如果不修改密码可以不输入" />
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <div class="input-group">
+                <div class="input-group-addon">新密码：</div>
+                <input name="newPwd" type="password" class="form-control" placeholder="新密码，如果不修改密码可以不输入" />
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary submit-update-btn">保存设置</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/webmModel">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title th:text="${session.baseConfig ne null ? session.baseConfig.name +' - 校园博客': ''}">校园博客</title>
+    <script type="text/javascript" src="/webm/category.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".delete-obj-href").deleteFun();
+        });
+    </script>
+</head>
+<body>
+<div th:fragment="content" th:remove="tag">
+    <div class="page-header">
+        <h3><i class="fa fa-newspaper-o"></i> 我的博文<small>（<b th:text="${datas.totalElements}"></b>）</small></h3>
+        <div th:replace="webm/article/nav :: content" th:remove="tag"></div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>标题</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="obj, objVs : ${datas}">
+                <td th:text="${objVs.count}">序号</td>
+                <td th:text="${obj.title}">${obj.name}</td>
+                <td>
+                    <div class="action-buttons">
+                        <a class="green update-cate-btn" title="修改" href="javascript:void(0)" th:href="@{/webm/article/update(id=${obj.id})}">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+
+                        <!--<a class="delete-obj-href red" th:title="'此操作不可逆，确定删除【'+${obj.title}+'】吗？'" th:href="'/webm/article/delete?id='+${obj.id}">
+                            <i class="fa fa-remove"></i>
+                        </a>-->
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div th:include="fragments/page :: pager" th:remove="tag"></div>
+    </div>
+</div>
+</body>
+</html>

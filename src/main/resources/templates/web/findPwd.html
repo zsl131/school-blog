@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/webModel">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title th:text="${session.baseConfig ne null ? session.baseConfig.name +' - 校园博客': ''}">校园博客</title>
+    <link type="text/css" rel="stylesheet" href="/web/register.css"/>
+    <script type="text/javascript" src="/web/findPwd.js"></script>
+</head>
+<body>
+<div th:fragment="content" th:remove="tag">
+    <div th:fragment="content">
+        <div class="title">
+            <b><i class="fa fa-user"></i> 找回密码</b>
+            <a href="/"><i class="fa fa-home"></i>前台首页</a>
+        </div>
+        <div class="row login-box">
+            <div class="col-md-6">
+                <form method="post" id="addForm">
+                    <div class="form-group form-group-lg text-left">
+                        <input name="token" type="hidden" value="${token}"/>
+                        <label for="email" style="margin-top:10px;">邮箱地址</label>
+                        <input type="text" name="email1" id="email" class="form-control input-xlarge" placeholder="请输入注册邮箱"/>
+                        <label for="pwd">验证码</label>
+                        <div class="input-group">
+                            <input type="text" name="code" id="pwd" class="form-control input-xlarge" placeholder="请输入验证码"/>
+                            <div class="input-group-addon get-code-btn">获取验证码</div>
+                        </div>
+                        <p class="text-left" style="margin-top:30px;">
+                            <input name="email" id="email-id" type="hidden"/>
+                            <button type="submit" class="btn btn-lg btn-danger"><i class="fa fa-search"></i> 提交找回</button>
+                            <br/>
+                            <span style="color:#aaa; width:100%; padding-top:8px; float:left;">提交后系统将发送随机密码到您邮箱，请注意查收！</span>
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-6 hidden-sm hidden-xs">
+                <p class="remind"><i class="fa fa-shield"></i>  严防死守，严把数据安全关</p>
+                <p class="remind"><i class="fa fa-support"></i>  高效稳定，运行稳健极速响应</p>
+                <p class="remind"><i class="fa fa-tv"></i>  轻松便捷，工作从此不再繁琐</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

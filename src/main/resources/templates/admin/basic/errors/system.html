@@ -3,7 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="fragments/adminModel">
+      layout:decorator="fragments/webModel">
     <head>
         <title>系统异常</title>
 
@@ -34,15 +34,12 @@
                 </div>
             </div>
         </div>-->
-        <div class="container" style="background: #FFF">
-            <h1 class="text-center" style="font-size:180px; color:#b60000;">
-                <span class="glyphicon glyphicon-remove"></span>
-                <br/>
-                <span style="font-size:28px; font-weight: bold;" th:text="${errorInfo.datas}">异常信息</span>
-
-            </h1>
-            <div class="alert alert-danger">
-                <p th:text="'错误信息：'+${errorInfo.message}"></p>
+        <div class="container-fluid" style="background: #FFF">
+            <div class="text-center" style="font-size:200px; color:#a72d2d"><i class="fa fa-remove"></i>
+                <p style="font-size:30px;">出现错误啦~~</p>
+            </div>
+            <div class="alert alert-danger text-left">
+                <p th:utext="'错误信息：'+${errorInfo.message}"></p>
                 <p th:text="'访问地址：'+${errorInfo.url}"></p>
                 <p th:text="'参数信息：'+${errorInfo.params}"></p>
             </div>
