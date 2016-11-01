@@ -8,9 +8,52 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title th:text="${session.baseConfig ne null ? session.baseConfig.name +' - 校园博客': ''}">校园博客</title>
+    <link type="text/css" rel="stylesheet" href="/web/web-page.css"/>
 </head>
 <body>
 <div th:fragment="content" th:remove="tag">
+    <div class="container-fluid">
+        <div class="col-md-6">
+            <div class="page-header">
+                <h3><i class="fa fa-list-ul"></i> 最新博文<small>（<b th:text="${newList.totalElements}"></b>）</small>
+                    <a href="/web/article/index" class="more-href">MORE</a>
+                </h3>
+            </div>
+            <ul class="data-list-ul">
+                <li th:each="art : ${newList}">
+                    <i class="fa fa-caret-right"></i>  [<a th:href="'/web/account/detail?id='+${art.accountId}" th:text="${art.accountName}"></a>]
+                    <a th:href="'/web/article/detail/'+${art.id}" th:text="${art.title}"></a>
+                    <span class="show-date" th:text="${#dates.format(art.createDate, 'MM-dd HH:mm')}"></span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-md-6">
+            <div class="page-header">
+                <h3><i class="fa fa-thumbs-o-up"></i> 推荐博文<small>（<b th:text="${goodList.totalElements}"></b>）</small>
+                <a href="/web/article/index?filter_isGood=eq-1" class="more-href">MORE</a>
+                </h3>
+            </div>
+            <ul class="data-list-ul">
+                <li th:each="art : ${goodList}">
+                    <i class="fa fa-caret-right"></i>  [<a th:href="'/web/account/detail?id='+${art.accountId}" th:text="${art.accountName}"></a>]
+                    <a th:href="'/web/article/detail/'+${art.id}" th:text="${art.title}"></a>
+                    <span class="show-date" th:text="${#dates.format(art.createDate, 'MM-dd HH:mm')}"></span>
+                </li>
+            </ul>
+
+            <div class="page-header" style="padding-top:25px;">
+                <h3><i class="fa fa-user"></i> 新用户<small>（<b th:text="${accountList.totalElements}"></b>）</small>
+                </h3>
+            </div>
+            <ul class="data-list-ul">
+                <li th:each="account : ${accountList}">
+                    <i class="fa fa-caret-right"></i>  [<a th:href="'/web/account/detail?id='+${account.id}" th:text="${account.nickname}"></a>]
+                    <span class="show-motto" th:text="${account.motto}"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 </body>
 </html>

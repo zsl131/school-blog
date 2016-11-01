@@ -34,6 +34,31 @@ public class EmailTools {
     }
 
     /**
+     * 修改博文属性通知
+     * @param field 被修改的属性
+     * @param val 修改后的值
+     * @param email 接收邮箱地址（发文人的）
+     * @param title 博文标题
+     * @param url 博文链接地址
+     */
+    public void sendOnUpdateArticle(String field, Integer val, String email, String title, String url) {
+        String fieldName = "isGood".equalsIgnoreCase(field)?"是否推荐":"是否显示";
+        String valName = val==1?"是":"否";
+        StringBuffer sb = new StringBuffer();
+        sb.append("<h1>您的博文属性被管理员修改！</h1>")
+                .append("<p>修改博文：<a href='").append(url).append("'>").append(title).append("</a></p>")
+                .append("<p>设置属性：<b style='color:#00F;'>").append(fieldName)
+                .append("</b>&nbsp;为&nbsp;<b style='color:#F00'>").append(valName).append("</b></p>");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                sendNormalEmail("博文属性修改通知", true, sb.toString(), true, email);
+            }
+        }).start();
+    }
+
+    /**
      * 博文变更通过
      * @param email 接收方邮箱地址（管理员的）
      * @param title 博文标题

@@ -22,7 +22,7 @@
                             <div th:each="pm : ${ppm.children}" th:remove="tag">
                                 <li th:id="'menu_'+${pm.id}" th:class="'menu-level-'+${menuVs.count}" th:attr="thisHref=${pm.href}, pmId=${ppm.pm.id}, mId=${pm.id}">
                                     <a th:href="'javascript:gotoHref(\''+${pm.href}+'\', \''+${ppm.pm.id}+'\', \''+${pm.id}+'\')'" >
-                                        <i th:class="${pm.icon}"></i><span th:text="${pm.name}+' '" th:remove="tag"></span>
+                                        <i th:class="${pm.icon}"></i> <span th:text="${pm.name}+' '" th:remove="tag"></span>
                                     </a>
                                 </li>
                             </div>

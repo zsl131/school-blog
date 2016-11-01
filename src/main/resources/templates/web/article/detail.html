@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/webModel">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title th:text="${article.title + ' - 校园博客'}">校园博客</title>
+    <link type="text/css" rel="stylesheet" href="/web/web-page.css"/>
+</head>
+<body>
+<div th:fragment="content" th:remove="tag">
+    <div class="container-fluid">
+        <div class="col-md-4">
+            <div class="panel panel-warning">
+                <div class="panel-heading"><i class="fa fa-user"></i> 用户信息</div>
+                <div class="panel-body">
+                    <h3 th:text="${account.nickname}" class="text-center"></h3>
+                    <p th:text="${account.motto}" class="text-center"></p>
+                    <p th:utext="${account.remark}"></p>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading"><i class="fa fa-list-ul"></i> 我的分类</div>
+                <div class="panel-body">
+                    <ul class="show-cate-list">
+                        <li th:each="cate : ${cateDtoList}">
+                            <i class="fa fa-caret-right"></i> <a th:href="'/web/article/index?filter_cateId=eq-'+${cate.cateId}" th:text="${cate.cateName}"></a>（<span th:remove="tag" th:text="${cate.amount}"></span>）
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading"><i class="fa fa-list-ul"></i> 最新博文</div>
+                <div class="panel-body">
+                    <ul class="data-list-ul">
+                        <li th:each="art : ${newList}">
+                            <i class="fa fa-caret-right"></i>  [<a th:href="'/web/account/detail?id='+${art.accountId}" th:text="${art.accountName}"></a>]
+                            <a th:href="'/web/article/detail/'+${art.id}" th:text="${art.title}"></a>
+                            <span class="show-date" th:text="${#dates.format(art.createDate, 'MM-dd HH:mm')}"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading"><i class="fa fa-thumbs-o-up"></i> 推荐博文</div>
+                <div class="panel-body">
+                    <ul class="data-list-ul">
+                        <li th:each="art : ${goodList}">
+                            <i class="fa fa-caret-right"></i>  [<a th:href="'/web/account/detail?id='+${art.accountId}" th:text="${art.accountName}"></a>]
+                            <a th:href="'/web/article/detail/'+${art.id}" th:text="${art.title}"></a>
+                            <span class="show-date" th:text="${#dates.format(art.createDate, 'MM-dd HH:mm')}"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="page-header">
+                <h3><i class="fa fa-circle" style="color:#999;"></i> <b th:text="${article.title}"></b>
+                <p class="detail-info">
+                    <i class="fa fa-clock-o"></i> <span title="发布时间" th:text="${#dates.format(article.createDate, 'yyyy-MM-dd HH:mm:ss')}"></span>&nbsp;
+                    <i class="fa fa-list"></i> <a title="所在分类" th:href="'/web/article/index?filter_cateId=eq-'+${article.cateId}" th:text="${article.cateName}"></a>&nbsp;
+                    <i class="fa fa-user"></i> <a title="发布者" th:href="'/web/account/detail?id='+${article.accountId}" th:text="${article.accountName}"></a>&nbsp;
+                    <i class="fa fa-eye"></i> <span title="浏览次数" th:text="${article.readCount}"></span>
+                </p>
+                </h3>
+            </div>
+            <div th:utext="${article.content}" style="font-size:18px;"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

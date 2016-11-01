@@ -2,12 +2,20 @@ package com.zslin.web.controller.web;
 
 import com.zslin.basic.exception.SystemException;
 import com.zslin.basic.tools.SecurityUtil;
+import com.zslin.basic.utils.BaseSearch;
+import com.zslin.basic.utils.PageableUtil;
+import com.zslin.basic.utils.SearchDto;
+import com.zslin.basic.utils.SortDto;
 import com.zslin.web.model.Account;
+import com.zslin.web.model.Article;
 import com.zslin.web.service.IAccountService;
+import com.zslin.web.service.IArticleService;
 import com.zslin.web.tools.EmailTools;
 import com.zslin.web.tools.RandomTools;
 import com.zslin.web.tools.RequestTools;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,10 +35,24 @@ public class WebIndexController {
     private IAccountService accountService;
 
     @Autowired
+    private IArticleService articleService;
+
+    @Autowired
     private EmailTools emailTools;
 
     @RequestMapping(value = {"", "/", "index"}, method = RequestMethod.GET)
     public String index(Model model, HttpServletRequest request) {
+        Specifications newSpes = Specifications.where(new BaseSearch<Article>(new SearchDto("isShow", "eq", 1)));
+        Page<Article> newList = articleService.findAll(newSpes, PageableUtil.basicPage(0, 30, new SortDto("desc", "createDate")));
+        model.addAttribute("newList", newList);
+
+        Specifications goodSpe = Specifications.where(new BaseSearch<Article>(new SearchDto("isShow", "eq", 1))).
+                and(new BaseSearch<>(new SearchDto("isGood", "eq", 1)));
+        Page<Article> goodList = articleService.findAll(goodSpe, PageableUtil.basicPage(0, 15, new SortDto("createDate")));
+        model.addAttribute("goodList", goodList);
+
+        Page<Account> accountList = accountService.findAll(PageableUtil.basicPage(0, 15));
+        model.addAttribute("accountList", accountList);
 
         return "/web/index";
     }

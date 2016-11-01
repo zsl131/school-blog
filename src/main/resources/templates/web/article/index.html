@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/webModel">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title th:text="${session.baseConfig ne null ? session.baseConfig.name +' - 校园博客': ''}">校园博客</title>
+    <link type="text/css" rel="stylesheet" href="/web/web-page.css"/>
+</head>
+<body>
+<div th:fragment="content" th:remove="tag">
+    <div class="container-fluid">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><i class="fa fa-thumbs-o-up"></i> 推荐博文</div>
+                <div class="panel-body">
+                    <ul class="data-list-ul">
+                        <li th:each="art : ${goodList}">
+                            <i class="fa fa-caret-right"></i>  [<a th:href="'/web/account/detail?id='+${art.accountId}" th:text="${art.accountName}"></a>]
+                            <a th:href="'/web/article/detail/'+${art.id}" th:text="${art.title}"></a>
+                            <span class="show-date" th:text="${#dates.format(art.createDate, 'MM-dd HH:mm')}"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading"><i class="fa fa-list-ul"></i> 最新博文</div>
+                <div class="panel-body">
+                    <ul class="data-list-ul">
+                        <li th:each="art : ${newList}">
+                            <i class="fa fa-caret-right"></i>  [<a th:href="'/web/account/detail?id='+${art.accountId}" th:text="${art.accountName}"></a>]
+                            <a th:href="'/web/article/detail/'+${art.id}" th:text="${art.title}"></a>
+                            <span class="show-date" th:text="${#dates.format(art.createDate, 'MM-dd HH:mm')}"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-warning">
+                <div class="panel panel-heading"><i class="fa fa-user"></i> 新用户</div>
+                <div class="panel-body">
+                    <ul class="data-list-ul">
+                        <li th:each="account : ${accountList}">
+                            <i class="fa fa-caret-right"></i>  [<a th:href="'/web/account/detail?id='+${account.id}" th:text="${account.nickname}"></a>]
+                            <span class="show-motto" th:text="${account.motto}"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="page-header">
+                <h3><i class="fa fa-list" style="color:#999;"></i> 博文列表</h3>
+            </div>
+
+            <ul class="data-list-ul" style="margin-top:15px;">
+                <li th:each="art : ${datas}">
+                    <i class="fa fa-caret-right"></i>  [<a th:href="'/web/account/detail?id='+${art.accountId}" th:text="${art.accountName}"></a>]
+                    <a th:href="'/web/article/detail/'+${art.id}" th:text="${art.title}"></a>
+                    <span class="show-date" th:text="${#dates.format(art.createDate, 'MM-dd HH:mm')}"></span>
+                </li>
+            </ul>
+
+            <div th:include="fragments/page :: pager" style="width:100%; padding-top:20px; float:right;"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

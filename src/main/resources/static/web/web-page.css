@@ -1,0 +1,25 @@
+ul.data-list-ul {
+    width:100%; padding:0px;
+}
+ul.data-list-ul li {
+    list-style:none; height:35px; font-size:16px; color:#777; float:left; width:100%;
+    border-bottom:1px #f7f7f7 solid; padding:5px 0px;
+}
+ul.data-list-ul li span.show-date {
+    float:right; color:#aaa; font-size:14px;
+}
+
+ul.show-cate-list {
+    width:100%; padding:0px;
+}
+ul.show-cate-list li {
+    list-style:none; height:35px; line-height:35px;
+}
+
+.page-header p.detail-info {
+    font-size:14px; color:#aaa; padding-top:15px;
+}
+
+a.more-href {
+    float:right; font-size:12px; padding-top:8px; margin-bottom:-6px;
+}
