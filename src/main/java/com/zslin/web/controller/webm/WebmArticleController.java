@@ -57,7 +57,7 @@ public class WebmArticleController {
             model.addAttribute("article", article);
             model.addAttribute("cateList", categoryService.findAll(
                     Specifications.where(new BaseSearch<>(new SearchDto("accountId", "eq", a.getId())))));
-            return "/webm/article/add";
+            return "webm/article/add";
         } else {
             article.setAccountEmail(a.getEmail());
             article.setAccountId(a.getId());
