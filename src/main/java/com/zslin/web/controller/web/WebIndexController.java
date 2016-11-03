@@ -47,20 +47,20 @@ public class WebIndexController {
         model.addAttribute("newList", newList);
 
         Specifications goodSpe = Specifications.where(new BaseSearch<Article>(new SearchDto("isShow", "eq", 1))).
-                and(new BaseSearch<>(new SearchDto("isGood", "eq", 1)));
+                and(new BaseSearch<Article>(new SearchDto("isGood", "eq", 1)));
         Page<Article> goodList = articleService.findAll(goodSpe, PageableUtil.basicPage(0, 15, new SortDto("createDate")));
         model.addAttribute("goodList", goodList);
 
         Page<Account> accountList = accountService.findAll(PageableUtil.basicPage(0, 15));
         model.addAttribute("accountList", accountList);
 
-        return "/web/index";
+        return "web/index";
     }
 
     /** 用户注册 */
     @RequestMapping(value = "register", method = RequestMethod.GET)
     public String register(HttpServletRequest request) {
-        return "/web/register";
+        return "web/register";
     }
 
     @RequestMapping(value = "register", method = RequestMethod.POST)
@@ -98,7 +98,7 @@ public class WebIndexController {
     public String findPwd(Model model, HttpServletRequest request) {
         String method = request.getMethod();
         if("get".equalsIgnoreCase(method)) {
-            return "/web/findPwd";
+            return "web/findPwd";
         } else {
             String email = request.getParameter("email");
             String code = request.getParameter("code");
@@ -158,7 +158,7 @@ public class WebIndexController {
                 return "redirect:/webm/account/index";
             }
         }
-        return "/web/login";
+        return "web/login";
     }
 
     /** 退出 */

@@ -45,7 +45,7 @@ public class WebmArticleController {
                 PageableUtil.basicPage(page));
         model.addAttribute("datas", datas);
 
-        return "/webm/article/list";
+        return "webm/article/list";
     }
 
     @RequestMapping(value = "add")

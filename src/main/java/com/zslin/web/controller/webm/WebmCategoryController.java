@@ -36,7 +36,7 @@ public class WebmCategoryController {
         Page<Category> datas = categoryService.findAll(new ParamFilterUtil<Category>().buildSearch(model, request, spes),
                 PageableUtil.basicPage(page));
         model.addAttribute("datas", datas);
-        return "/webm/category/list";
+        return "webm/category/list";
     }
 
     /** 添加 */
