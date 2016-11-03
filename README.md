@@ -1,4 +1,5 @@
-# 校园博客
+# Springboot+JPA+Thymeleaf 校园博客完整小网站
+
 
 此项目是一个比较简易的校园博客。
 麻雀虽小五脏俱全，虽然是比较简易的但是涉及的知识点还是比较全面的。
@@ -7,14 +8,14 @@
 
 主要功能有：
 
-1. 系统管理
+1. [系统管理](http://www.zslin.com/web/article/detail/27 "完整项目基础架构精简版-实现权限管理 - 知识林")
     + 系统初始化
     + 菜单管理
     + 角色管理
     + 用户管理
     + 系统配置管理
 
-2. 用户注册
+2. [用户注册](http://www.zslin.com/web/article/detail/22 "Springboot 之 JavaMailSender发送电子邮件 - 知识林")
     + 邮件验证码实现
     + 用户登陆
     + 找回密码
@@ -51,6 +52,8 @@
 
 + 登陆后可修改自己的基本信息，如：姓名、座右铭、个人介绍及登陆密码等。
 
+邮件发送可以参考另一篇文章[《Springboot 之 JavaMailSender发送电子邮件》](http://www.zslin.com/web/article/detail/22 "Springboot 之 JavaMailSender发送电子邮件 - 知识林")
+
 ### 博文管理
 
 博文管理分为博文分类管理和博文内容管理
@@ -63,7 +66,7 @@
 
 ### 后台管理
 
-后台管理功能属于系统管理人员操作
+后台管理功能属于系统管理人员操作，可以参考另一个纯净项目[《完整项目基础架构精简版-实现权限管理》](http://www.zslin.com/web/article/detail/27 "完整项目基础架构精简版-实现权限管理 - 知识林")
 
 + 权限管理
     
@@ -95,6 +98,8 @@
 
 ### 访问
 
+初始化页面：[http://sblog.zslin.com/init](http://sblog.zslin.com/init)（已经初始化过不能再重复初始化）
+
 前台页面：[http://sblog.zslin.com](http://sblog.zslin.com)
 
 后台管理：[http://sblog.zslin.com/admin](http://sblog.zslin.com/admin)
@@ -103,6 +108,59 @@
 
 后台管理用户密码：111111
 
+### 说明
+
+本项目在Github上的地址：https://github.com/zsl131/school-blog
+
+本项目作者：[知识林](http://www.zslin.com)
 
 
+------------
 
+### 项目截图
+
+本人页面设计水平太差，先随便设计点效果出来主要是演示后台程序功能，所以页面设计先暂时放一放。
+
+**用户注册页面效果：**
+
+![用户注册页面](http://og1mqilfp.bkt.clouddn.com/web-user-register.jpg)
+
+
+**用户信息信息、密码修改页面：**
+
+![用户信息信息、密码修改页面](http://og1mqilfp.bkt.clouddn.com/web-user-update.jpg)
+
+
+**添加分类页面效果：**
+
+![添加分类页面效果](http://og1mqilfp.bkt.clouddn.com/web-add-category.jpg)
+
+
+**删除信息提示效果：**
+
+![删除信息提示效果](http://og1mqilfp.bkt.clouddn.com/web-delete-remind.jpg)
+
+
+**添加博文页面效果：**
+
+![添加博文页面效果](http://og1mqilfp.bkt.clouddn.com/web-add-article.jpg)
+
+
+**博文列表页面效果：**
+
+![博文列表页面效果](http://og1mqilfp.bkt.clouddn.com/web-list-article.jpg)
+
+
+**404错误页面效果：**
+
+![404错误页面效果](http://og1mqilfp.bkt.clouddn.com/web-error-404.jpg)
+
+
+**500错误页面效果：**
+
+![500错误页面效果](http://og1mqilfp.bkt.clouddn.com/web-error-500.jpg)
+
+
+**后台管理页面效果：**
+
+![后台管理页面效果](http://og1mqilfp.bkt.clouddn.com/admin-list-article.jpg?imageMogr2/thumbnail/!100p)
